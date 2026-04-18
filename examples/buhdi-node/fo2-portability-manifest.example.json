@@ -1,0 +1,78 @@
+{
+  "specVersion": "0.1",
+  "bundleId": "11111111-2222-3333-4444-555555555555",
+  "createdAt": "2026-04-18T17:00:00.000Z",
+  "source": {
+    "product": "buhdi-node",
+    "productVersion": "0.3.0",
+    "runtime": "node-22",
+    "os": "windows-11"
+  },
+  "agent": {
+    "name": "Buhdi",
+    "identityModel": "agent_with_memory_and_tools",
+    "summary": "Portable agent bundle with memory, prompts, skills, and workspace metadata."
+  },
+  "portability": {
+    "intent": "machine_migration",
+    "includes": [
+      "memory_snapshot",
+      "system_prompt",
+      "skill_definition",
+      "tool_registry",
+      "workspace_manifest",
+      "restore_recipe"
+    ],
+    "excludes": [
+      "raw_api_keys",
+      "browser_sessions",
+      "ssh_private_keys",
+      "os_keychain_data"
+    ],
+    "secretMode": "references_only"
+  },
+  "compatibility": {
+    "required": [
+      "node-22",
+      "git",
+      "npm"
+    ],
+    "optional": [
+      "ffmpeg"
+    ],
+    "restoreWarnings": [
+      "Re-enter provider credentials on destination machine.",
+      "Map workspace root before restoring project references."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "mem-001",
+      "type": "memory_snapshot",
+      "path": "memory/export.json",
+      "contentType": "application/json",
+      "bytes": 20480,
+      "hash": "sha256:example-memory",
+      "requiredForRestore": true
+    },
+    {
+      "id": "prompt-001",
+      "type": "system_prompt",
+      "path": "prompts/system.md",
+      "contentType": "text/markdown",
+      "bytes": 4096,
+      "hash": "sha256:example-prompt",
+      "requiredForRestore": true
+    }
+  ],
+  "checksums": [
+    {
+      "path": "memory/export.json",
+      "hash": "sha256:example-memory"
+    },
+    {
+      "path": "prompts/system.md",
+      "hash": "sha256:example-prompt"
+    }
+  ]
+}
